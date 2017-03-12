@@ -50,10 +50,6 @@ public class HamburgerMenuButton: UIButton {
         setupLayer()
     }
     
-//    override public func prepareForInterfaceBuilder(){
-//        setupLayer()
-//    }
-    
     private let topLeft = CAShapeLayer()
     private let topRight = CAShapeLayer()
     private let middleLeft = CAShapeLayer()
