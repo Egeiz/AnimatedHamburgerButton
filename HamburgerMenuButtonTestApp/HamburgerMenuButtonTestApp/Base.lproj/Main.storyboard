@@ -31,7 +31,7 @@
                                         <color key="value" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="horizontalLineSpacing">
-                                        <real key="value" value="19"/>
+                                        <real key="value" value="9"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
