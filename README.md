@@ -1,10 +1,10 @@
 # AnimatedHamburgerButton
-Button with animation used in Hamburger menus. Following customizations:
-* line stroke color
+Button with animation used in Hamburger menus. The Button will change its style on every tap on it. Following customizations can be done via @IBInspectables:
+* line color
 * line stroke width
 * line spacing on close state
 
-Set the isMenuOpen property to change button visibility programatically. The Button will change its style on every tap on it.
+Set the isMenuOpen property to change button visibility programatically. 
 
 #State Close
 ![](https://github.com/Egeiz/AnimatedHamburgerButton/blob/master/HamburgerMenuButtonTestApp/Images/MenuClosed.png "Close State")
