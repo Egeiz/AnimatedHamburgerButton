@@ -19,6 +19,12 @@ public class HamburgerMenuButton: UIButton {
         }
     }
     
+    @IBInspectable public var verticalSpacingLineToX: CGFloat = 3 {
+        didSet {
+            setupLayer()
+        }
+    }
+    
     @IBInspectable public var menuStrokeWidth: CGFloat = 1{
         didSet{
             updateStrokeWidth()
@@ -78,10 +84,10 @@ public class HamburgerMenuButton: UIButton {
         setupInitialMenuLine(left: bottomLeft, right: bottomRight, startPoint: startingPoint(for: .bottom), endPoint: endPoint(for: .bottom))
         
         let centerPoint = middelPoint(first: startingPoint(for: .middle), second: endPoint(for: .middle))
-        setupOpenMenuX(sectionLayer: section1, startPoint: centerPoint, endPoint: startingPoint(for: .top))
-        setupOpenMenuX(sectionLayer: section2, startPoint: centerPoint, endPoint: endPoint(for: .top))
-        setupOpenMenuX(sectionLayer: section3, startPoint: centerPoint, endPoint: endPoint(for: .bottom))
-        setupOpenMenuX(sectionLayer: section4, startPoint: centerPoint, endPoint: startingPoint(for: .bottom))
+        setupOpenMenuX(sectionLayer: section1, startPoint: centerPoint, endPoint: addVerticalSpacing(point: startingPoint(for: .top), direction: .up))
+        setupOpenMenuX(sectionLayer: section2, startPoint: centerPoint, endPoint: addVerticalSpacing(point: endPoint(for: .top), direction: .up))
+        setupOpenMenuX(sectionLayer: section3, startPoint: centerPoint, endPoint: addVerticalSpacing(point: endPoint(for: .bottom), direction: .down))
+        setupOpenMenuX(sectionLayer: section4, startPoint: centerPoint, endPoint: addVerticalSpacing(point: startingPoint(for: .bottom), direction: .down))
     }
     
     internal func setupOpenMenuX(sectionLayer:CAShapeLayer, startPoint:CGPoint, endPoint:CGPoint){
@@ -99,8 +105,6 @@ public class HamburgerMenuButton: UIButton {
         self.layer.addSublayer(sectionLayer)
 
     }
-    
-    
     
     internal func setupInitialMenuLine(left: CAShapeLayer, right: CAShapeLayer, startPoint: CGPoint, endPoint:CGPoint){
        
@@ -197,7 +201,6 @@ public class HamburgerMenuButton: UIButton {
             animateMenuClosingLines(lineLayers: sectionArray, animation: animationOut, strokeEndValue: 0)
             CATransaction.commit()
         }
-
     }
     
     internal func strokeAnimation(from: CGFloat, to:CGFloat)-> CABasicAnimation{
@@ -230,6 +233,23 @@ public class HamburgerMenuButton: UIButton {
     
     
     // MARK: - Helper
+    public override func prepareForInterfaceBuilder() {
+        setupLayer()
+    }
+    
+    private enum Direction{
+        case up
+        case down
+    }
+    
+    private func addVerticalSpacing(point: CGPoint, direction: Direction)->CGPoint{
+        switch direction {
+        case .down:
+            return CGPoint(x: point.x, y: point.y-verticalSpacingLineToX)
+        case .up:
+            return CGPoint(x: point.x, y: point.y+verticalSpacingLineToX)
+        }
+    }
     
     private func startingPoint(for layerType: layerType)->CGPoint{
         
